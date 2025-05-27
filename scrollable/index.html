@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>scrollableのサンプル</title>
+  <link rel="stylesheet" href="../common.css">
+  <style>
+    body {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+      color: var(--color-main);
+      background-color: var(--color-white);
+    }
+
+    .list-container {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      height: 100%;
+      max-height: 720px;
+      overflow: auto;
+      background-color: var(--color-bg-main);
+      border-radius: 8px;
+      container-type: scroll-state;
+    }
+
+    .scroll-hint-wrapper {
+      position: sticky;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 37px;
+      padding: 4px;
+      opacity: 0;
+      transition: opacity 0.2s linear;
+
+      @container scroll-state(scrollable: top) {
+        opacity: 1;
+      }
+    }
+
+    .scroll-hint {
+      display: block;
+      height: 29px;
+      padding: 4px;
+      font-size: 0.875rem;
+      color: var(--color-white);
+      text-align: center;
+      background-color: var(--color-main-opacity-80);
+      border-radius: 4px;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      margin: -37px 0 0;
+    }
+
+    .list-item {
+      border-bottom:solid 1px #cfcfcf;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    .list-item__link {
+      display: block;
+      padding: 16px 16px 16px 0;
+      font-size: 1.25rem;
+    }
+  </style>
+</head>
+<body>
+<div class="list-container">
+  <button type="button" class="scroll-hint-wrapper">
+    <span class="scroll-hint">最上部へスクロール</span>
+  </button>
+  <ul class="list">
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-01</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-02</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-03</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-04</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-05</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-06</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-07</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-08</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-09</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-10</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-11</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-12</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-13</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-14</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-15</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-16</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-17</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-18</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-19</a>
+    </li>
+    <li class="list-item">
+      <a href="" class="list-item__link">リスト-20</a>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

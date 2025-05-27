@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>stuckのサンプル</title>
+  <link rel="stylesheet" href="../common.css">
+  <style>
+    body {
+      color: var(--color-main);
+      background-color: var(--color-bg-main);
+    }
+
+    .mock-separator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 160px;
+      &.mock-separator--large {
+        height: 100vh;
+      }
+    }
+
+    .mock-section {
+      width: 100%;
+      height: 1080px;
+      padding: 32px;
+      margin: 0 auto;
+      color: var(--color-main);
+      background: var(--color-white);
+
+      h2 {
+        font-size: 3rem;
+        font-weight: normal;
+      }
+    }
+
+    .section-container {
+      container-type: scroll-state;
+      position: sticky;
+      bottom: 20px;
+      padding-top: 80px;
+    }
+
+
+    .section {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 96px;
+      margin: 0 auto;
+      border-radius: 16px;
+    }
+
+    @keyframes fade-in-text {
+      0% {
+        color: var(--color-white);
+      }
+
+      5% {
+        color: transparent;
+      }
+
+      100% {
+        color: var(--color-white);
+      }
+    }
+
+    .section-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 240px;
+      height: 64px;
+      color: var(--color-white);
+      background: var(--color-main);
+      border-radius: 80px;
+      box-shadow: 0 4px 8px 0 color-mix(in srgb, var(--color-main) 24%, transparent);
+      transition-timing-function: cubic-bezier(.32,3.2,.54,1);
+      transition-duration: 0.3s;
+      transition-property: width, height;
+
+      @container not scroll-state(stuck: bottom) {
+        width: 280px;
+        height: 80px;
+        animation: fade-in-text 1.2s forwards;
+      }
+
+      .section-button__sub-text {
+        width: 0;
+        overflow: hidden;
+        color: transparent;
+        white-space: nowrap;
+        opacity: 0;
+        transition: all 0.4s;
+        interpolate-size: allow-keywords;
+
+        @container not scroll-state(stuck: bottom) {
+          width: auto;
+          opacity: 1;
+          animation: fade-in-text 1.2s forwards;
+        }
+      }
+    }
+
+  </style>
+</head>
+<body>
+<div class="mock-separator mock-separator--large">下へスクロールしてください</div>
+
+<div>
+  <div class="mock-section">
+    <h2>セクション01</h2>
+  </div>
+  <div class="section-container">
+    <div class="section">
+      <a href="#" class="section-button"><span class="section-button__sub-text">セクション01を</span>詳しく見る</a>
+    </div>
+  </div>
+</div>
+
+<div class="mock-separator"></div>
+</body>
+</html>
