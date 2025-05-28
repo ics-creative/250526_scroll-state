@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../layout.css">
+  <link rel="stylesheet" href="carousel.css">
+  <title>snappedのサンプル</title>
+  <style>
+    .item {
+      container-type: scroll-state;
+      img {
+        transition: scale 0.3s;
+        transition-delay: 0.2s;
+
+        @container not scroll-state(snapped: inline) {
+          scale: 0.85;
+          transition-delay: 0s;
+        }
+      }
+    }
+  </style>
+</head>
+<body>
+<ul class="carousel">
+  <li class="item">
+    <a href="" target="_blank">
+      <img src="./images/landscape_01.jpg" alt="">
+    </a>
+  </li>
+  <li class="item">
+    <a href="" target="_blank">
+      <img src="./images/landscape_02.jpg" alt="">
+    </a>
+  </li>
+  <li class="item">
+    <a href="" target="_blank">
+      <img src="./images/landscape_03.jpg" alt="">
+    </a>
+  </li>
+  <li class="item">
+    <a href="" target="_blank">
+      <img src="./images/landscape_04.jpg" alt="">
+    </a>
+  </li>
+  <li class="item">
+    <a href="" target="_blank">
+      <img src="./images/landscape_05.jpg" alt="">
+    </a>
+  </li>
+</ul>
+
+<!-- サポートされていないブラウザ向けメッセージ -->
+<p class="message">
+  このカルーセルはお使いのブラウザでは一部機能がご利用いただけません。<br>
+  <code>::scroll-button()</code>、<code>::scroll-maker</code> 疑似要素がサポートされているブラウザでご覧ください。
+</p>
+
+</body>
+</html>
