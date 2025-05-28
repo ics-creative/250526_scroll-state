@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>snappedのサンプル</title>
-  <link rel="stylesheet" href="../common.css">
+  <link rel="stylesheet" href="../layout.css">
   <style>
     body {
       display: grid;
@@ -29,8 +29,8 @@
       width: 100%;
       height: 100%;
       padding: 64px 32px;
-      scroll-snap-type: both mandatory;
       overflow-y: auto;
+      scroll-snap-type: both mandatory;
       scroll-behavior: smooth;
     }
 
@@ -51,8 +51,8 @@
       font-size: 2rem;
       background: var(--color-white);
       border-radius: 8px;
-      transition: all 0.2s linear;
       scale: 0.9;
+      transition: all 0.2s linear;
 
       @container scroll-state(snapped: block) {
         scale: 1;
