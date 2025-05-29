@@ -1,6 +1,6 @@
 記事『』のサンプルコードです。
 
-デモで使用している画像はいずれもUnsplashで取得しています。撮影者のクレジットは以下のとおりです。
+デモで使用している画像はいずれも[Unsplash](https://unsplash.com/)で取得しています。撮影者のクレジットは以下のとおりです。
 
 [snappedのサンプル②](https://ics-creative.github.io/250526_scroll-state/snapped-carousel/)
 
