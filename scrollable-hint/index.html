@@ -144,5 +144,15 @@
     </li>
   </ul>
 </div>
+
+
+<script>
+  const list = document.querySelector(".list");
+  const hint = document.querySelector(".scroll-hint-wrapper");
+  // スクロールヒントのクリックで最上部へスクロール
+  hint.addEventListener("click", () => {
+    list.scrollIntoView({ behavior: "instant", block: "start" });
+  });
+</script>
 </body>
 </html>
