@@ -24,6 +24,7 @@ body {
  * ---------------------- */
 .carousel {
   display: grid;
+  grid-template-rows: 100%; /* 子要素の画面の高さにあわせる */
   grid-auto-columns: 100%;
 
   /* アイテムを横並びにする */
