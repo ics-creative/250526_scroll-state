@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="../layout.css" />
     <style>
       :root {
-        --space-small: 8px;
         --space-medium: 16px;
         --space-large: 32px;
+        --height-header: 64px;
         --font-size-heading: 2rem;
         --line-height-body: 1.5;
         --duration-header: 0.3s;
@@ -32,10 +32,12 @@
         gap: var(--space-medium);
         align-items: center;
         justify-content: space-between;
-        padding: var(--space-small) var(--space-medium);
-        color: var(--color-text);
-        background-color: var(--color-surface);
-        box-shadow: 0 1px 0 var(--color-line);
+        min-height: var(--height-header);
+        padding: var(--space-medium);
+
+        /* 本文と区別できる帯にし、隠れる範囲を明確にする。 */
+        color: var(--color-surface);
+        background-color: var(--color-text);
         translate: 0 0;
         transition: translate var(--duration-header) ease;
 
