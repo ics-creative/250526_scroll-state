@@ -5,6 +5,9 @@
   --color-text: #222;
   --color-line: #ddd;
   --color-text-translucent: color-mix(in srgb, var(--color-text) 80%, transparent);
+  --color-scrollbar-thumb: #888;
+  --scrollbar-size: 32px;
+  --scrollbar-inset: 4px;
 
   width: 100%;
   height: 100%;
@@ -14,6 +17,29 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-bg);
+
+  /* 指定幅と角丸を参照デモに合わせる。標準の色指定による上書きを避ける。 */
+
+  /* https://github.com/ics-creative/261023_scroll_triggered_animations/blob/main/01_Basic/index.html */
+  @supports selector(::-webkit-scrollbar) {
+    scrollbar-color: auto;
+  }
+
+  &::-webkit-scrollbar {
+    width: var(--scrollbar-size);
+    height: var(--scrollbar-size);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--color-bg);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-scrollbar-thumb);
+    border: var(--scrollbar-inset) solid var(--color-bg);
+    border-radius: 100vh;
+  }
 }
 
 body {
