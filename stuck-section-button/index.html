@@ -27,8 +27,8 @@
         height: 1080px;
         padding: 32px;
         margin: 0 auto;
-        color: var(--color-text);
-        background: var(--color-surface);
+        color: var(--color-surface);
+        background: var(--color-text);
 
         h2 {
           font-size: 3rem;
@@ -55,7 +55,7 @@
 
       @keyframes fade-in-text {
         0% {
-          color: var(--color-surface);
+          color: var(--color-text);
         }
 
         5% {
@@ -63,7 +63,7 @@
         }
 
         100% {
-          color: var(--color-surface);
+          color: var(--color-text);
         }
       }
 
@@ -73,8 +73,9 @@
         justify-content: center;
         width: 240px;
         height: 64px;
-        color: var(--color-surface);
-        background: var(--color-text);
+        color: var(--color-text);
+        background: var(--color-surface);
+        border: 2px solid var(--color-text);
         border-radius: 80px;
         box-shadow: 0 4px 8px 0 color-mix(in srgb, var(--color-text) 24%, transparent);
         transition-timing-function: cubic-bezier(0.32, 3.2, 0.54, 1);

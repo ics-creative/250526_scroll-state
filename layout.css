@@ -6,7 +6,7 @@
   --color-line: #ddd;
   --color-text-translucent: color-mix(in srgb, var(--color-text) 80%, transparent);
   --color-scrollbar-thumb: #888;
-  --scrollbar-size: 32px;
+  --scrollbar-size: 22px;
   --scrollbar-inset: 4px;
 
   width: 100%;
