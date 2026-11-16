@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="ja">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=768" />
-    <title>stuckのサンプル③</title>
+    <title>Sticky section button | scroll-state() demo</title>
     <link rel="stylesheet" href="../layout.css" />
     <style>
       body {
-        color: var(--color-main);
-        background-color: var(--color-bg-main);
+        color: var(--color-text);
+        background-color: var(--color-bg);
       }
 
       .mock-separator {
@@ -27,8 +27,8 @@
         height: 1080px;
         padding: 32px;
         margin: 0 auto;
-        color: var(--color-main);
-        background: var(--color-white);
+        color: var(--color-text);
+        background: var(--color-surface);
 
         h2 {
           font-size: 3rem;
@@ -55,7 +55,7 @@
 
       @keyframes fade-in-text {
         0% {
-          color: var(--color-white);
+          color: var(--color-surface);
         }
 
         5% {
@@ -63,7 +63,7 @@
         }
 
         100% {
-          color: var(--color-white);
+          color: var(--color-surface);
         }
       }
 
@@ -73,10 +73,10 @@
         justify-content: center;
         width: 240px;
         height: 64px;
-        color: var(--color-white);
-        background: var(--color-main);
+        color: var(--color-surface);
+        background: var(--color-text);
         border-radius: 80px;
-        box-shadow: 0 4px 8px 0 color-mix(in srgb, var(--color-main) 24%, transparent);
+        box-shadow: 0 4px 8px 0 color-mix(in srgb, var(--color-text) 24%, transparent);
         transition-timing-function: cubic-bezier(0.32, 3.2, 0.54, 1);
         transition-duration: 0.3s;
         transition-property: width, height;
@@ -106,16 +106,16 @@
     </style>
   </head>
   <body>
-    <div class="mock-separator mock-separator--large">下へスクロールしてください</div>
+    <div class="mock-separator mock-separator--large">Scroll down</div>
 
     <div>
       <div class="mock-section">
-        <h2>セクション01</h2>
+        <h2>Section 01</h2>
       </div>
       <div class="section-container">
         <div class="section">
           <a href="#" class="section-button"
-            ><span class="section-button__sub-text">セクション01を</span>詳しく見る</a
+            >Learn more<span class="section-button__sub-text">&nbsp;about Section 01</span></a
           >
         </div>
       </div>

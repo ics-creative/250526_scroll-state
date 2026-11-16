@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="ja">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>snappedのサンプル①</title>
+    <title>Vertical snap | scroll-state() demo</title>
     <link rel="stylesheet" href="../layout.css" />
     <style>
       body {
@@ -12,8 +12,8 @@
         width: 100%;
         height: 100%;
         padding: 16px;
-        color: var(--color-main);
-        background-color: var(--color-white);
+        color: var(--color-text);
+        background-color: var(--color-bg);
       }
 
       .wrapper {
@@ -22,8 +22,9 @@
         height: 100%;
         max-height: 720px;
         overflow: hidden;
-        background-color: var(--color-bg-main);
+        background-color: var(--color-bg);
         border-radius: 8px;
+        box-shadow: 0 0 0 1px var(--color-line);
       }
 
       .scroll-container {
@@ -55,7 +56,7 @@
         padding: 24px;
         overflow: auto;
         font-size: 2rem;
-        background: var(--color-white);
+        background: var(--color-surface);
         border-radius: 8px;
         scale: 0.9;
         transition: scale var(--duration-snap) var(--ease-spring);

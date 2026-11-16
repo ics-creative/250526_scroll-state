@@ -1,9 +1,10 @@
 :root {
-  --color-main: #262d40;
-  --color-main-opacity-80: color-mix(in srgb, var(--color-main) 80%, transparent);
-  --color-white: #fff;
-  --color-text-white: #d0d2d9;
-  --color-bg-main: #e2e2e2;
+  /* 参照デモの無彩色パレット。https://github.com/ics-creative/260527_hamburger_menu/ */
+  --color-bg: #eee;
+  --color-surface: #fff;
+  --color-text: #222;
+  --color-line: #ddd;
+  --color-text-translucent: color-mix(in srgb, var(--color-text) 80%, transparent);
 
   width: 100%;
   height: 100%;

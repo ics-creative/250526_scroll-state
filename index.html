@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="ja">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>scroll-state()のサンプル一覧</title>
+    <title>scroll-state() demos</title>
     <link rel="stylesheet" href="./layout.css" />
     <style>
       :root {
@@ -19,8 +19,8 @@
 
       body {
         line-height: var(--line-height-body);
-        color: var(--color-main);
-        background-color: var(--color-white);
+        color: var(--color-text);
+        background-color: var(--color-bg);
       }
 
       main {
@@ -31,8 +31,7 @@
         margin-inline: auto;
       }
 
-      header,
-      section {
+      header {
         display: grid;
         gap: var(--space-medium);
       }
@@ -50,52 +49,97 @@
         gap: var(--space-small);
       }
 
+      .demo-list {
+        gap: var(--space-large);
+        list-style: disc;
+
+        ul {
+          padding-inline-start: var(--space-medium);
+          margin-block-start: var(--space-small);
+          list-style: circle;
+        }
+      }
+
       a {
         text-decoration: underline;
+      }
+
+      li a {
+        display: block;
       }
     </style>
   </head>
   <body>
     <main>
       <header>
-        <h1>scroll-state()のサンプル一覧</h1>
+        <h1>scroll-state() demos</h1>
         <p>
-          ICS MEDIAの記事『<a href="https://ics.media/entry/250602/"
-            >スクロールの状態変化でスタイル切替が可能に！
-            CSSコンテナークエリーのscroll-state()入門</a
-          >』のサンプルです。
+          <a href="https://ics.media/en/entry/250602/">ICS MEDIA article</a>
+          <span lang="ja">（<a href="https://ics.media/entry/250602/">日本語の記事</a>）</span>
         </p>
       </header>
-      <section>
-        <h2>固定状態（stuck）</h2>
-        <ul>
-          <li><a href="./stuck-header/index.html">固定ヘッダーのスタイル切り替え</a></li>
-          <li><a href="./stuck-navigation/index.html">固定時に変形するナビゲーション</a></li>
-          <li><a href="./stuck-section-button/index.html">セクション内に固定するボタン</a></li>
-        </ul>
-      </section>
-      <section>
-        <h2>スクロールできる状態（scrollable）</h2>
-        <ul>
-          <li><a href="./scrollable-hint/index.html">最上部へ戻るスクロールヒント</a></li>
-          <li><a href="./scrollable-tabs/index.html">横スクロールできるタブUI</a></li>
-        </ul>
-      </section>
-      <section>
-        <h2>スナップ状態（snapped）</h2>
-        <ul>
-          <li><a href="./snapped-vertical/index.html">縦スクロールのスナップ</a></li>
-          <li><a href="./snapped-carousel/index.html">画像カルーセルのスナップ</a></li>
-        </ul>
-      </section>
-      <section>
-        <h2>スクロール方向（scrolled）</h2>
-        <ul>
-          <li>
-            <a href="./scrolled-header/index.html">スクロール方向で隠れるヘッダー（Hidey bar）</a>
-          </li>
-        </ul>
-      </section>
+      <ul class="demo-list">
+        <li>
+          <h2>stuck<span lang="ja">（固定の検知）</span></h2>
+          <ul>
+            <li>
+              <a href="./stuck-header/index.html"
+                >Sticky header<span lang="ja">（固定ヘッダー）</span></a
+              >
+            </li>
+            <li>
+              <a href="./stuck-navigation/index.html"
+                >Expanding navigation<span lang="ja">（伸縮ナビ）</span></a
+              >
+            </li>
+            <li>
+              <a href="./stuck-section-button/index.html"
+                >Section button<span lang="ja">（固定ボタン）</span></a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h2>scrollable<span lang="ja">（スクロール可否）</span></h2>
+          <ul>
+            <li>
+              <a href="./scrollable-hint/index.html"
+                >Back-to-top hint<span lang="ja">（先頭へ戻る）</span></a
+              >
+            </li>
+            <li>
+              <a href="./scrollable-tabs/index.html"
+                >Scrollable tabs<span lang="ja">（スクロールタブ）</span></a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h2>snapped<span lang="ja">（スナップの検知）</span></h2>
+          <ul>
+            <li>
+              <a href="./snapped-vertical/index.html"
+                >Vertical snap<span lang="ja">（縦スクロール）</span></a
+              >
+            </li>
+            <li>
+              <a href="./snapped-carousel/index.html"
+                >Snap carousel<span lang="ja">（カルーセル）</span></a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h2>scrolled<span lang="ja">（スクロール方向）</span></h2>
+          <ul>
+            <li>
+              <a href="./scrolled-header/index.html"
+                >Hidey bar<span lang="ja">（自動で隠れるヘッダー）</span></a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
     </main>
   </body>
 </html>

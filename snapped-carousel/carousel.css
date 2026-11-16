@@ -11,7 +11,8 @@ body {
   grid-template-rows: minmax(0, 1fr) auto;
   padding: 0;
   margin: 0;
-  background-color: #fff;
+  color: var(--color-text);
+  background-color: var(--color-bg);
 }
 
 /* ----------------------*
@@ -59,8 +60,8 @@ body {
     width: 50px;
     height: 50px;
     padding: 0;
-    color: black;
-    background-color: #fff;
+    color: var(--color-text);
+    background-color: var(--color-surface);
     border: none;
     border-radius: 50%;
     transform: translateY(-50%);
@@ -73,14 +74,14 @@ body {
   }
 
   &::scroll-button(*):disabled {
-    color: lightgray;
+    color: var(--color-line);
   }
 
   /* ホバー時スタイル */
   &::scroll-button(*):not(:disabled):hover {
-    color: #fff;
+    color: var(--color-text);
     cursor: pointer;
-    background-color: black;
+    background-color: var(--color-bg);
   }
 
   /* 前へボタン */
@@ -88,7 +89,7 @@ body {
     left: calc(anchor(left) + 40px);
 
     /* コンテンツ / 代替テキスト */
-    content: "◀" / "前へ";
+    content: "◀" / "Previous";
   }
 
   /* 次へボタン */
@@ -96,7 +97,7 @@ body {
     right: calc(anchor(right) + 40px);
 
     /* コンテンツ / 代替テキスト */
-    content: "▶" / "次へ";
+    content: "▶" / "Next";
   }
 }
 

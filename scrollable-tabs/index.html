@@ -1,25 +1,33 @@
 <!doctype html>
-<html lang="en">
+<html>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wine notes</title>
   <style>
+    :root {
+      /* 単体HTMLでも共通デモと同じ配色を使う。 */
+      --color-bg: #eee;
+      --color-surface: #fff;
+      --color-text: #222;
+      --color-line: #ddd;
+    }
+
     body {
       display: grid;
       place-content: center;
       min-block-size: 100svh;
       margin: 0;
       font-family: Georgia, serif;
-      color: #302e2b;
-      background: #f6f5f2;
+      color: var(--color-text);
+      background: var(--color-bg);
     }
 
     main {
       inline-size: min(640px, calc(100vw - 48px));
       padding-block-end: 168px;
-      border: 1px solid #e2dfd9;
+      border: 1px solid var(--color-line);
       border-radius: 8px;
-      background: #fff;
+      background: var(--color-surface);
       overflow: clip;
     }
 
@@ -37,7 +45,7 @@
       box-sizing: border-box;
       min-block-size: 168px;
       padding: 24px;
-      border-block-start: 1px solid #e2dfd9;
+      border-block-start: 1px solid var(--color-line);
 
       h2 {
         margin: 0 0 12px;
@@ -47,7 +55,7 @@
 
       p {
         margin: 0;
-        color: #79736b;
+        color: var(--color-text);
         line-height: 1.6;
       }
     }
@@ -70,21 +78,21 @@
         padding-block: 12px 14px;
         padding-inline: 16px;
         border-radius: 4px 4px 0 0;
-        color: #79736b;
+        color: var(--color-text);
         text-decoration: none;
         white-space: nowrap;
         transition: all 0.2s;
 
         &:hover {
-          color: #302e2b;
-          background: #eeece7;
+          color: var(--color-text);
+          background: var(--color-bg);
         }
       }
 
       &:not(:has(:target)) > div:first-child,
       > div:has(:target) {
         a {
-          color: #302e2b;
+          color: var(--color-text);
           anchor-name: --selected;
         }
 
@@ -149,13 +157,13 @@
       .previous {
         inset-inline-start: 0;
         padding-inline: 6px 38px;
-        background: linear-gradient(to right, #fff 32px, transparent);
+        background: linear-gradient(to right, var(--color-surface) 32px, transparent);
       }
 
       .next {
         inset-inline-end: 0;
         padding-inline: 38px 6px;
-        background: linear-gradient(to left, #fff 32px, transparent);
+        background: linear-gradient(to left, var(--color-surface) 32px, transparent);
       }
 
       &::scroll-button(left),
@@ -262,7 +270,7 @@
           height="20"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#79736b"
+          stroke="currentColor"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
@@ -275,7 +283,7 @@
           height="20"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#79736b"
+          stroke="currentColor"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
