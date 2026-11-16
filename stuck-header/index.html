@@ -6,9 +6,14 @@
     <title>Sticky header | scroll-state() demo</title>
     <link rel="stylesheet" href="../layout.css" />
     <style>
+      :root {
+        --color-text: #262d40;
+        --color-bg-page: #e2e2e2;
+      }
+
       body {
         color: var(--color-text);
-        background-color: var(--color-bg);
+        background-color: var(--color-bg-page);
       }
 
       .mock-main {
@@ -45,15 +50,13 @@
         margin: 20px auto 0;
         color: var(--color-surface);
         border-radius: 8px;
-        outline: 1px solid transparent;
-
-        /* 文字と背景が途中で同色にならないよう、配色は即時切り替える。 */
-        transition: outline-color 0.2s;
+        box-shadow: none;
+        transition: 0.2s;
 
         @container scroll-state(stuck: top) {
           color: var(--color-text);
           background-color: var(--color-surface);
-          outline-color: var(--color-text);
+          box-shadow: 0 2px 8px color-mix(in srgb, var(--color-text) 8%, transparent);
         }
 
         .header-logo {
@@ -64,6 +67,7 @@
           padding: 8px 16px;
           color: var(--color-text);
           background-color: var(--color-surface);
+          transition: 0.2s;
 
           @container scroll-state(stuck: top) {
             color: var(--color-surface);
