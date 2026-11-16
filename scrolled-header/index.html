@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scrolledのサンプル（Hidey bar）</title>
+    <link rel="stylesheet" href="../layout.css" />
+    <style>
+      :root {
+        --space-small: 8px;
+        --space-medium: 16px;
+        --space-large: 32px;
+        --font-size-heading: 2rem;
+        --line-height-body: 1.5;
+        --duration-header: 0.3s;
+        --z-index-header: 1;
+
+        container-type: scroll-state;
+      }
+
+      body {
+        line-height: var(--line-height-body);
+        color: var(--color-main);
+        background-color: var(--color-white);
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: var(--z-index-header);
+        display: flex;
+        gap: var(--space-medium);
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-small) var(--space-medium);
+        color: var(--color-white);
+        background-color: var(--color-main);
+        translate: 0 0;
+        transition: translate var(--duration-header) ease;
+
+        /* 最上部では表示を保ち、下スクロール時だけ画面外へ隠す。 */
+        @container scroll-state((scrolled: bottom) and (scrollable: top)) {
+          translate: 0 -100%;
+        }
+
+        /* 隠れたリンクにもキーボードで移動できるため、フォーカス時は表示する。 */
+        &:focus-within {
+          translate: 0 0;
+        }
+
+        a {
+          text-decoration: underline;
+        }
+      }
+
+      .mock-section {
+        display: grid;
+        gap: var(--space-medium);
+        align-content: center;
+        min-height: 100svh;
+        padding: var(--space-large);
+
+        &:nth-child(even) {
+          background-color: var(--color-bg-main);
+        }
+      }
+
+      h1,
+      h2 {
+        font-size: var(--font-size-heading);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <span>Hidey bar</span>
+      <a href="../index.html">サンプル一覧</a>
+    </header>
+    <main>
+      <section class="mock-section">
+        <h1>スクロールで隠れるヘッダー</h1>
+        <p>下にスクロールすると隠れ、上にスクロールすると戻ります。</p>
+      </section>
+      <section class="mock-section">
+        <h2>セクション02</h2>
+      </section>
+      <section class="mock-section">
+        <h2>セクション03</h2>
+      </section>
+    </main>
+  </body>
+</html>

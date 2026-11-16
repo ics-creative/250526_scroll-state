@@ -1,110 +1,111 @@
 <!doctype html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=768">
-  <title>stuckのサンプル②</title>
-  <link rel="stylesheet" href="../layout.css">
-  <style>
-    body {
-      color: var(--color-main);
-      background-color: var(--color-bg-main);
-    }
-
-    .mock-separator {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 160px;
-
-      &.mock-separator--large {
-        height: 100vh;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=768" />
+    <title>stuckのサンプル②</title>
+    <link rel="stylesheet" href="../layout.css" />
+    <style>
+      body {
+        color: var(--color-main);
+        background-color: var(--color-bg-main);
       }
-    }
 
-    .mock-main {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 640px;
-      padding-bottom: 72px;
-      font-size: 4rem;
-      font-weight: normal;
-      color: var(--color-white);
-      text-align: center;
-      background: var(--color-main);
-    }
+      .mock-separator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 160px;
 
-    .nav-list-container {
-      container-type: scroll-state;
-      position: sticky;
-      top: 20px;
-      left: 0;
-      margin-top: calc(-100px - 32px);
-    }
-
-    .nav-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      align-items: center;
-      width: 560px;
-      height: 72px;
-      padding: 0 20px;
-      margin: 0 auto;
-      color: var(--color-main);
-      background: var(--color-white);
-      border-radius: 40px;
-      transition: all 0.4s cubic-bezier(.32,1.3,.54,1);
-
-      @container scroll-state(stuck: top) {
-        .nav {
-          transition-delay: 0.3s;
+        &.mock-separator--large {
+          height: 100vh;
         }
       }
 
-      @container not scroll-state(stuck: top) {
-        grid-template-columns: 0 0 0 1fr;
-        width: 160px;
+      .mock-main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 640px;
+        padding-bottom: 72px;
+        font-size: 4rem;
+        font-weight: normal;
+        color: var(--color-white);
+        text-align: center;
+        background: var(--color-main);
+      }
 
-        .nav {
-          opacity: 0;
+      .nav-list-container {
+        container-type: scroll-state;
+        position: sticky;
+        top: 20px;
+        left: 0;
+        margin-top: calc(-100px - 32px);
+      }
+
+      .nav-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        align-items: center;
+        width: 560px;
+        height: 72px;
+        padding: 0 20px;
+        margin: 0 auto;
+        color: var(--color-main);
+        background: var(--color-white);
+        border-radius: 40px;
+        transition: all 0.4s cubic-bezier(0.32, 1.3, 0.54, 1);
+
+        @container scroll-state(stuck: top) {
+          .nav {
+            transition-delay: 0.3s;
+          }
+        }
+
+        @container not scroll-state(stuck: top) {
+          grid-template-columns: 0 0 0 1fr;
+          width: 160px;
+
+          .nav {
+            opacity: 0;
+          }
         }
       }
-    }
 
-    .nav, .contact {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      overflow-x: clip;
-      white-space: nowrap;
-      transition: all 0.2s;
-    }
-  </style>
-</head>
-<body>
-<div class="mock-main">scroll-state()<br>Sample</div>
+      .nav,
+      .contact {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        overflow-x: clip;
+        white-space: nowrap;
+        transition: all 0.2s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mock-main">scroll-state()<br />Sample</div>
 
-<nav class="nav-list-container">
-  <ul class="nav-list">
-    <li>
-      <a href="" class="nav">会社概要</a>
-    </li>
-    <li>
-      <a href="" class="nav">制作事例</a>
-    </li>
-    <li>
-      <a href="" class="nav">採用情報</a>
-    </li>
-    <li>
-      <a href="" class="contact">問い合わせ</a>
-    </li>
-  </ul>
-</nav>
+    <nav class="nav-list-container">
+      <ul class="nav-list">
+        <li>
+          <a href="" class="nav">会社概要</a>
+        </li>
+        <li>
+          <a href="" class="nav">制作事例</a>
+        </li>
+        <li>
+          <a href="" class="nav">採用情報</a>
+        </li>
+        <li>
+          <a href="" class="contact">問い合わせ</a>
+        </li>
+      </ul>
+    </nav>
 
-<div class="mock-separator mock-separator--large"></div>
-<div class="mock-separator"></div>
-</body>
+    <div class="mock-separator mock-separator--large"></div>
+    <div class="mock-separator"></div>
+  </body>
 </html>

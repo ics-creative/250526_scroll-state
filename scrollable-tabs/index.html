@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wine notes</title>
+  <style>
+    body {
+      display: grid;
+      place-content: center;
+      min-block-size: 100svh;
+      margin: 0;
+      font-family: Georgia, serif;
+      color: #302e2b;
+      background: #f6f5f2;
+    }
+
+    main {
+      inline-size: min(640px, calc(100vw - 48px));
+      padding-block-end: 168px;
+      border: 1px solid #e2dfd9;
+      border-radius: 8px;
+      background: #fff;
+      overflow: clip;
+    }
+
+    .tab-bar {
+      position: relative;
+      margin: 16px 16px 0;
+      overflow-x: clip;
+    }
+
+    .tabs section {
+      position: absolute;
+      inset-block-start: 100%;
+      inset-inline: -16px;
+      display: none;
+      box-sizing: border-box;
+      min-block-size: 168px;
+      padding: 24px;
+      border-block-start: 1px solid #e2dfd9;
+
+      h2 {
+        margin: 0 0 12px;
+        font-size: 1.5rem;
+        font-weight: normal;
+      }
+
+      p {
+        margin: 0;
+        color: #79736b;
+        line-height: 1.6;
+      }
+    }
+
+    .tabs {
+      container: tabs / scroll-state;
+      anchor-scope: --selected;
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+      scroll-behavior: smooth;
+      scroll-padding-inline: 32px;
+
+      > div {
+        flex: none;
+      }
+
+      a {
+        display: block;
+        padding-block: 12px 14px;
+        padding-inline: 16px;
+        border-radius: 4px 4px 0 0;
+        color: #79736b;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: all 0.2s;
+
+        &:hover {
+          color: #302e2b;
+          background: #eeece7;
+        }
+      }
+
+      &:not(:has(:target)) > div:first-child,
+      > div:has(:target) {
+        a {
+          color: #302e2b;
+          anchor-name: --selected;
+        }
+
+        section {
+          display: block;
+        }
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        position-anchor: --selected;
+        inset-block-end: 0;
+        inset-inline: anchor(left) anchor(right);
+        border-block-end: 1px solid;
+        pointer-events: none;
+        transition: all 0.2s;
+      }
+
+      &::scroll-button(*),
+      svg {
+        position: absolute;
+        display: none;
+        opacity: 0;
+        transition: all 0.24s allow-discrete;
+      }
+
+      &::scroll-button(*) {
+        inset-block: 0;
+        z-index: 2;
+        inline-size: 32px;
+        block-size: 100%;
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: pointer;
+      }
+
+      &::scroll-button(*):hover {
+        /* 背景の白を保ち、背面の矢印だけ濃くする。 */
+        backdrop-filter: grayscale(1) contrast(8);
+      }
+
+      &::scroll-button(left) {
+        content: "" / "Scroll left";
+        inset-inline-start: 0;
+      }
+
+      &::scroll-button(right) {
+        content: "" / "Scroll right";
+        inset-inline-end: 0;
+      }
+
+      svg {
+        inset-block: 0;
+        margin-block: auto;
+        z-index: 1;
+        padding-block: 12px;
+        pointer-events: none;
+      }
+
+      .previous {
+        inset-inline-start: 0;
+        padding-inline: 6px 38px;
+        background: linear-gradient(to right, #fff 32px, transparent);
+      }
+
+      .next {
+        inset-inline-end: 0;
+        padding-inline: 38px 6px;
+        background: linear-gradient(to left, #fff 32px, transparent);
+      }
+
+      &::scroll-button(left),
+      .previous {
+        translate: -4px;
+      }
+
+      &::scroll-button(right),
+      .next {
+        translate: 4px;
+      }
+
+      @container tabs scroll-state(scrollable: inline-start) {
+        &::scroll-button(left),
+        .previous {
+          display: block;
+          opacity: 1;
+          translate: 0;
+
+          @starting-style {
+            opacity: 0;
+            translate: -4px;
+          }
+        }
+      }
+
+      @container tabs scroll-state(scrollable: inline-end) {
+        &::scroll-button(right),
+        .next {
+          display: block;
+          opacity: 1;
+          translate: 0;
+
+          @starting-style {
+            opacity: 0;
+            translate: 4px;
+          }
+        }
+      }
+    }
+  </style>
+  <main>
+    <div class="tab-bar">
+      <div class="tabs">
+        <div>
+          <a id="pinot-noir" href="#pinot-noir">Pinot Noir</a>
+          <section>
+            <h2>Pinot Noir</h2>
+            <p>Red cherry, raspberry and a light touch of earth, with fine tannins.</p>
+          </section>
+        </div>
+        <div>
+          <a id="cabernet-sauvignon" href="#cabernet-sauvignon">Cabernet Sauvignon</a>
+          <section>
+            <h2>Cabernet Sauvignon</h2>
+            <p>Blackcurrant and cedar, with firm tannins and a long, dry finish.</p>
+          </section>
+        </div>
+        <div>
+          <a id="merlot" href="#merlot">Merlot</a>
+          <section>
+            <h2>Merlot</h2>
+            <p>Ripe plum and red cherry, with soft tannins and a rounded texture.</p>
+          </section>
+        </div>
+        <div>
+          <a id="syrah" href="#syrah">Syrah</a>
+          <section>
+            <h2>Syrah</h2>
+            <p>Blackberry, cracked pepper and savoury spice, with a generous body.</p>
+          </section>
+        </div>
+        <div>
+          <a id="chardonnay" href="#chardonnay">Chardonnay</a>
+          <section>
+            <h2>Chardonnay</h2>
+            <p>Apple and citrus in leaner styles; peach, toast and vanilla in richer ones.</p>
+          </section>
+        </div>
+        <div>
+          <a id="sauvignon-blanc" href="#sauvignon-blanc">Sauvignon Blanc</a>
+          <section>
+            <h2>Sauvignon Blanc</h2>
+            <p>Citrus, green apple and fresh herbs, with bright acidity and a crisp finish.</p>
+          </section>
+        </div>
+        <div>
+          <a id="riesling" href="#riesling">Riesling</a>
+          <section>
+            <h2>Riesling</h2>
+            <p>Lime, green apple and floral notes, with fresh acidity in dry or sweet styles.</p>
+          </section>
+        </div>
+        <div>
+          <a id="chenin-blanc" href="#chenin-blanc">Chenin Blanc</a>
+          <section>
+            <h2>Chenin Blanc</h2>
+            <p>Apple, lemon and ripe peach, in styles ranging from dry to richly sweet.</p>
+          </section>
+        </div>
+        <svg
+          class="previous"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#79736b"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m15 6-6 6 6 6" />
+        </svg>
+        <svg
+          class="next"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#79736b"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m9 6 6 6-6 6" />
+        </svg>
+      </div>
+    </div>
+  </main>
+</html>

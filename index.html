@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scroll-state()のサンプル一覧</title>
+    <link rel="stylesheet" href="./layout.css" />
+    <style>
+      :root {
+        --page-max-width: 800px;
+        --space-small: 8px;
+        --space-medium: 16px;
+        --space-large: 32px;
+        --space-page: 48px;
+        --font-size-title: 2rem;
+        --font-size-heading: 1.25rem;
+        --line-height-body: 1.8;
+      }
+
+      body {
+        line-height: var(--line-height-body);
+        color: var(--color-main);
+        background-color: var(--color-white);
+      }
+
+      main {
+        display: grid;
+        gap: var(--space-large);
+        width: min(var(--page-max-width), 100%);
+        padding: var(--space-page) var(--space-medium);
+        margin-inline: auto;
+      }
+
+      header,
+      section {
+        display: grid;
+        gap: var(--space-medium);
+      }
+
+      h1 {
+        font-size: var(--font-size-title);
+      }
+
+      h2 {
+        font-size: var(--font-size-heading);
+      }
+
+      ul {
+        display: grid;
+        gap: var(--space-small);
+      }
+
+      a {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>scroll-state()のサンプル一覧</h1>
+        <p>
+          ICS MEDIAの記事『<a href="https://ics.media/entry/250602/"
+            >スクロールの状態変化でスタイル切替が可能に！
+            CSSコンテナークエリーのscroll-state()入門</a
+          >』のサンプルです。
+        </p>
+      </header>
+      <section>
+        <h2>固定状態（stuck）</h2>
+        <ul>
+          <li><a href="./stuck-header/index.html">固定ヘッダーのスタイル切り替え</a></li>
+          <li><a href="./stuck-navigation/index.html">固定時に変形するナビゲーション</a></li>
+          <li><a href="./stuck-section-button/index.html">セクション内に固定するボタン</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2>スクロールできる状態（scrollable）</h2>
+        <ul>
+          <li><a href="./scrollable-hint/index.html">最上部へ戻るスクロールヒント</a></li>
+          <li><a href="./scrollable-tabs/index.html">横スクロールできるタブUI</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2>スナップ状態（snapped）</h2>
+        <ul>
+          <li><a href="./snapped-vertical/index.html">縦スクロールのスナップ</a></li>
+          <li><a href="./snapped-carousel/index.html">画像カルーセルのスナップ</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2>スクロール方向（scrolled）</h2>
+        <ul>
+          <li>
+            <a href="./scrolled-header/index.html">スクロール方向で隠れるヘッダー（Hidey bar）</a>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

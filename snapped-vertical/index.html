@@ -1,85 +1,90 @@
 <!doctype html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>snappedのサンプル①</title>
-  <link rel="stylesheet" href="../layout.css">
-  <style>
-    body {
-      display: grid;
-      place-items: center;
-      width: 100%;
-      height: 100%;
-      padding: 16px;
-      color: var(--color-main);
-      background-color: var(--color-white);
-    }
-
-    .wrapper {
-      width: 100%;
-      max-width: 400px;
-      height: 100%;
-      max-height: 720px;
-      overflow: hidden;
-      background-color: var(--color-bg-main);
-      border-radius: 8px;
-    }
-
-    .scroll-container {
-      width: 100%;
-      height: 100%;
-      padding: 64px 32px;
-      overflow-y: auto;
-      scroll-snap-type: both mandatory;
-      scroll-behavior: smooth;
-    }
-
-    .item-container {
-      container-type: scroll-state;
-      width: 100%;
-      height: 90%;
-      scroll-snap-align: center;
-    }
-
-    .item {
-      position: relative;
-      gap: 16px;
-      width: 100%;
-      height: 100%;
-      padding: 24px;
-      overflow: auto;
-      font-size: 2rem;
-      background: var(--color-white);
-      border-radius: 8px;
-      scale: 0.9;
-      transition: all 0.2s linear;
-
-      @container scroll-state(snapped: block) {
-        scale: 1;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>snappedのサンプル①</title>
+    <link rel="stylesheet" href="../layout.css" />
+    <style>
+      body {
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 16px;
+        color: var(--color-main);
+        background-color: var(--color-white);
       }
-    }
-  </style>
-</head>
-<body>
-<div class="wrapper">
-  <div class="scroll-container">
-    <div class="item-container">
-      <div class="item">01</div>
+
+      .wrapper {
+        width: 100%;
+        max-width: 400px;
+        height: 100%;
+        max-height: 720px;
+        overflow: hidden;
+        background-color: var(--color-bg-main);
+        border-radius: 8px;
+      }
+
+      .scroll-container {
+        width: 100%;
+        height: 100%;
+        padding: 64px 32px;
+        overflow-y: auto;
+        scroll-snap-type: both mandatory;
+        scroll-behavior: smooth;
+      }
+
+      .item-container {
+        container-type: scroll-state;
+        width: 100%;
+        height: 90%;
+        scroll-snap-align: center;
+      }
+
+      .item {
+        --duration-snap: 0.6s;
+
+        /* 少し行き過ぎてから収束するスプリング。https://ics.media/entry/260402/ */
+        --ease-spring: linear(0, 0.18, 0.42, 0.72, 0.95, 1.06, 1.04, 1.01, 0.99, 1);
+
+        position: relative;
+        gap: 16px;
+        width: 100%;
+        height: 100%;
+        padding: 24px;
+        overflow: auto;
+        font-size: 2rem;
+        background: var(--color-white);
+        border-radius: 8px;
+        scale: 0.9;
+        transition: scale var(--duration-snap) var(--ease-spring);
+
+        @container scroll-state(snapped: block) {
+          scale: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="scroll-container">
+        <div class="item-container">
+          <div class="item">01</div>
+        </div>
+        <div class="item-container">
+          <div class="item">02</div>
+        </div>
+        <div class="item-container">
+          <div class="item">03</div>
+        </div>
+        <div class="item-container">
+          <div class="item">04</div>
+        </div>
+        <div class="item-container">
+          <div class="item">05</div>
+        </div>
+      </div>
     </div>
-    <div class="item-container">
-      <div class="item">02</div>
-    </div>
-    <div class="item-container">
-      <div class="item">03</div>
-    </div>
-    <div class="item-container">
-      <div class="item">04</div>
-    </div>
-    <div class="item-container">
-      <div class="item">05</div>
-    </div>
-  </div>
-</div>
-</body>
+  </body>
 </html>

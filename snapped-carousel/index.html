@@ -1,62 +1,62 @@
 <!doctype html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=768">
-  <link rel="stylesheet" href="../layout.css">
-  <link rel="stylesheet" href="carousel.css">
-  <title>snappedのサンプル②</title>
-  <style>
-    .item {
-      container-type: scroll-state;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../layout.css" />
+    <link rel="stylesheet" href="carousel.css" />
+    <title>snappedのサンプル②</title>
+    <style>
+      .item {
+        container-type: scroll-state;
 
-      img {
-        transition: scale 0.3s;
-        transition-delay: 0.2s;
+        img {
+          transition: scale 0.3s;
+          transition-delay: 0.2s;
 
-        @container not scroll-state(snapped: inline) {
-          scale: 0.85;
-          transition-delay: 0s;
+          @container not scroll-state(snapped: inline) {
+            scale: 0.85;
+            transition-delay: 0s;
+          }
         }
       }
-    }
-  </style>
-</head>
-<body>
-<ul class="carousel">
-  <!-- liの子要素はaタグ -->
-  <li class="item">
-    <span>
-      <img src="./images/landscape_01.jpg" alt="">
-    </span>
-  </li>
-  <li class="item">
-    <span>
-      <img src="./images/landscape_02.jpg" alt="">
-    </span>
-  </li>
-  <li class="item">
-    <span>
-      <img src="./images/landscape_03.jpg" alt="">
-    </span>
-  </li>
-  <li class="item">
-    <span>
-      <img src="./images/landscape_04.jpg" alt="">
-    </span>
-  </li>
-  <li class="item">
-    <span>
-      <img src="./images/landscape_05.jpg" alt="">
-    </span>
-  </li>
-</ul>
+    </style>
+  </head>
+  <body>
+    <ul class="carousel">
+      <!-- liの子要素はaタグ -->
+      <li class="item">
+        <span>
+          <img src="./images/landscape_01.jpg" alt="" />
+        </span>
+      </li>
+      <li class="item">
+        <span>
+          <img src="./images/landscape_02.jpg" alt="" />
+        </span>
+      </li>
+      <li class="item">
+        <span>
+          <img src="./images/landscape_03.jpg" alt="" />
+        </span>
+      </li>
+      <li class="item">
+        <span>
+          <img src="./images/landscape_04.jpg" alt="" />
+        </span>
+      </li>
+      <li class="item">
+        <span>
+          <img src="./images/landscape_05.jpg" alt="" />
+        </span>
+      </li>
+    </ul>
 
-<!-- サポートされていないブラウザ向けメッセージ -->
-<p class="message">
-  このカルーセルはお使いのブラウザでは一部機能がご利用いただけません。<br>
-  <code>::scroll-button()</code>、<code>::scroll-maker</code> 疑似要素がサポートされているブラウザでご覧ください。
-</p>
-
-</body>
+    <!-- サポートされていないブラウザ向けメッセージ -->
+    <p class="message">
+      このカルーセルはお使いのブラウザでは一部機能がご利用いただけません。<br />
+      <code>::scroll-button()</code>、<code>::scroll-marker</code>
+      疑似要素がサポートされているブラウザでご覧ください。
+    </p>
+  </body>
 </html>

@@ -6,17 +6,12 @@ body {
 
 body {
   display: grid;
-  place-content: start center;
-  margin: 20px 0 0;
-  background-color: #fff;
-}
 
-/* ③横幅いっぱいのカルーセルの個別CSS */
-
-body {
-  display: block;
+  /* 案内の高さを確保し、カルーセルを残りの画面内に収める。 */
+  grid-template-rows: minmax(0, 1fr) auto;
   padding: 0;
   margin: 0;
+  background-color: #fff;
 }
 
 /* ----------------------*
@@ -69,10 +64,16 @@ body {
     border: none;
     border-radius: 50%;
     transform: translateY(-50%);
-    transition: background-color 0.2s, color 0.2s;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
 
     /* カルーセルの位置を基準にする */
     position-anchor: --carousel;
+  }
+
+  &::scroll-button(*):disabled {
+    color: lightgray;
   }
 
   /* ホバー時スタイル */
@@ -80,10 +81,6 @@ body {
     color: #fff;
     cursor: pointer;
     background-color: black;
-  }
-
-  &::scroll-button(*):disabled {
-    color: lightgray;
   }
 
   /* 前へボタン */
