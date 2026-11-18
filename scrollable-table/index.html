@@ -264,7 +264,7 @@
             border-right: 2px solid var(--hint-color);
             border-top-right-radius: 2px;
             animation-name: pass-scroll-hint, fade-scroll-hint;
-            animation-duration: 1s;
+            animation-duration: 1.2s;
 
             /* 中央に向けて少しずつ減速し、抜け際に向けて加速する。 */
             animation-timing-function:
@@ -298,8 +298,8 @@
               rotate: 45deg;
             }
 
-            /* 右へスクロールできる間だけ矢印を表示する。 */
-            @container scroll-state(scrollable: right) {
+            /* 左端にいて、右へ進めるときだけ表示する。 */
+            @container scroll-state((not (scrollable: left)) and (scrollable: right)) {
               opacity: 1;
             }
           }
@@ -315,8 +315,8 @@
               rotate: 135deg;
             }
 
-            /* 下へスクロールできる間だけ矢印を表示する。 */
-            @container scroll-state(scrollable: bottom) {
+            /* 上端にいて、下へ進めるときだけ表示する。 */
+            @container scroll-state((not (scrollable: top)) and (scrollable: bottom)) {
               opacity: 1;
             }
           }
