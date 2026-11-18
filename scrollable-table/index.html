@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scrollable table | scroll-state() demo</title>
+    <link rel="stylesheet" href="../layout.css" />
+    <style>
+      /* 回転前の矢印は右上向き。 */
+      @keyframes pass-scroll-hint {
+        from {
+          transform: translate(-4px, 4px);
+        }
+
+        to {
+          transform: translate(8px, -8px);
+        }
+      }
+
+      @keyframes fade-scroll-hint {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      body {
+        container: demo / inline-size;
+        display: grid;
+        grid-template-columns: min(100%, 760px);
+        justify-content: center;
+        place-items: center;
+        min-block-size: 100svh;
+        padding: 30px 20px;
+        color: var(--color-text);
+        background: var(--color-bg);
+      }
+
+      .table-scroll {
+        --phase-width: 100px;
+        --task-width: 130px;
+        --label-width: calc(var(--phase-width) + var(--task-width));
+        --label-edge: calc(var(--label-width) + 2px);
+        --fixed-width: var(--phase-width);
+        --month-width: 120px;
+        --row-height: 40px;
+        --peek: 20px;
+        --snap-inset: calc(var(--fixed-width) + var(--peek));
+        --hint-color: #3223b3;
+        --header-shadow: color-mix(in srgb, var(--color-text) 8%, transparent);
+
+        /* 矢印と影は、この表のスクロール状態で切り替える。 */
+        container-type: size;
+        container-type: size scroll-state;
+        display: grid;
+        grid-template: max-content / max-content;
+
+        /* 右端で列が少し見切れる幅にする。 */
+        inline-size: 100%;
+        max-inline-size: calc(
+          var(--label-edge) +
+            max(
+              var(--month-width),
+              round(up, 100% - var(--label-edge) - 40px, var(--month-width))
+            ) -
+            var(--peek)
+        );
+        block-size: 340px;
+
+        /* 下端に次の行を少し見せる。 */
+        max-block-size: calc(round(down, 60svh, var(--row-height)) + var(--peek) + 2px);
+        min-block-size: 70px;
+        overflow: auto;
+        scrollbar-color: auto;
+
+        /* スクロールが止まるとき、縦は行、横は列に揃える。 */
+        scroll-snap-type: both mandatory;
+
+        /* 止まる位置を固定見出しの分ずらす。横は前の列も少し残す。 */
+        scroll-padding-block-start: var(--row-height);
+        scroll-padding-inline-start: var(--snap-inset);
+        border: 1px solid var(--color-line);
+        border-radius: 8px;
+        background: var(--color-surface);
+
+        table {
+          grid-area: 1 / 1;
+          inline-size: calc(var(--label-width) + 7 * var(--month-width));
+          border-spacing: 0;
+          table-layout: fixed;
+          font-size: 0.9rem;
+          line-height: 1.4;
+          overflow-wrap: anywhere;
+
+          .phase {
+            inline-size: var(--phase-width);
+          }
+
+          .task {
+            inline-size: var(--task-width);
+          }
+
+          th,
+          td {
+            block-size: var(--row-height);
+            padding: 8px;
+            border-inline-end: 1px solid var(--color-line);
+            border-block-end: 1px solid var(--color-line);
+            text-align: start;
+          }
+
+          th.phase {
+            position: sticky;
+            left: 0;
+            z-index: 1;
+          }
+
+          thead {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+
+            &::after {
+              content: "";
+              position: absolute;
+              inset: 100% 0 auto;
+              block-size: 4px;
+              pointer-events: none;
+              background: linear-gradient(to bottom, var(--header-shadow), transparent);
+
+              /* 上に戻れるときは見出しの下に影を出す。 */
+              @container scroll-state(scrollable: top) {
+                opacity: 1;
+              }
+            }
+
+            th {
+              background: var(--color-bg);
+            }
+          }
+
+          tbody {
+            /* 縦は各行の上端、最後の行は下端で止める。 */
+            tr {
+              scroll-snap-align: start none;
+            }
+
+            &:last-child tr:last-child {
+              scroll-snap-align: end none;
+            }
+
+            th {
+              background: color-mix(in srgb, var(--color-bg) 45%, var(--color-surface));
+            }
+
+            .phase {
+              vertical-align: top;
+            }
+
+            .task {
+              font-weight: normal;
+            }
+          }
+
+          .bar {
+            display: block;
+            block-size: 8px;
+            border-radius: 8px;
+            background: color-mix(in srgb, var(--color-text) 25%, var(--color-surface));
+          }
+        }
+
+        @container demo (inline-size >= 600px) {
+          --fixed-width: var(--label-width);
+
+          table th.task {
+            position: sticky;
+            left: var(--phase-width);
+            z-index: 1;
+          }
+        }
+
+        /* 結合セルがある行でも、月の境目にスナップさせる。 */
+        .column-snaps {
+          position: relative;
+          display: grid;
+          grid-area: 1 / 1;
+          grid-auto-flow: column;
+          grid-auto-columns: var(--month-width);
+          justify-items: start;
+          padding-inline-start: var(--label-width);
+
+          span,
+          &::before,
+          &::after {
+            inline-size: 1px;
+            scroll-snap-align: none start;
+          }
+
+          &::before,
+          &::after {
+            content: "";
+            position: absolute;
+            inset-block: 0;
+          }
+
+          &::before {
+            inset-inline-start: var(--snap-inset);
+          }
+
+          &::after {
+            inset-inline-end: 0;
+            scroll-snap-align: none end;
+          }
+        }
+
+        thead::after,
+        .scroll-overlays::before,
+        .scroll-hint {
+          opacity: 0;
+          transition: opacity 0.2s;
+        }
+
+        .scroll-overlays {
+          position: sticky;
+          inset: 0 auto auto 0;
+          z-index: 3;
+          display: grid;
+          grid-area: 1 / 1;
+          place-self: start;
+          inline-size: 100cqi;
+          block-size: 100cqb;
+
+          &::before {
+            content: "";
+            position: absolute;
+            inset: 0 auto 0 var(--fixed-width);
+            inline-size: 4px;
+            background: linear-gradient(to right, var(--header-shadow), transparent);
+
+            /* 左に戻れるとき、固定列の右に影を出す。 */
+            @container scroll-state(scrollable: left) {
+              opacity: 1;
+            }
+          }
+        }
+
+        /* opacity で表示を切り替え、両方の矢印のアニメーションを進め続ける。 */
+        .scroll-hint {
+          display: grid;
+          grid-area: 1 / 1;
+          place-items: center;
+          overflow: clip;
+
+          &::before {
+            content: "";
+            box-sizing: border-box;
+            inline-size: 14px;
+            aspect-ratio: 1;
+            border-top: 2px solid var(--hint-color);
+            border-right: 2px solid var(--hint-color);
+            border-top-right-radius: 2px;
+            animation-name: pass-scroll-hint, fade-scroll-hint;
+            animation-duration: 1s;
+
+            /* 中央に向けて少しずつ減速し、抜け際に向けて加速する。 */
+            animation-timing-function:
+              linear(
+                0,
+                0.05 5%,
+                0.2 10%,
+                0.3 15%,
+                0.35 20%,
+                0.38 25%,
+                0.41 35%,
+                0.44 55%,
+                0.46 65%,
+                0.5 75%,
+                0.54 80%,
+                0.6 85%,
+                0.7 90%,
+                1
+              ),
+              linear(0, 0.15 5%, 0.55 10%, 0.9 15%, 1 20% 85%, 0);
+            animation-iteration-count: infinite;
+          }
+
+          &.right {
+            justify-self: end;
+            place-items: center end;
+            inline-size: 64px;
+
+            &::before {
+              margin-inline-end: 16px;
+              rotate: 45deg;
+            }
+
+            /* 右へスクロールできる間だけ矢印を表示する。 */
+            @container scroll-state(scrollable: right) {
+              opacity: 1;
+            }
+          }
+
+          &.bottom {
+            align-self: end;
+            align-items: end;
+            block-size: 64px;
+            padding-inline-start: var(--fixed-width);
+
+            &::before {
+              margin-block-end: 16px;
+              rotate: 135deg;
+            }
+
+            /* 下へスクロールできる間だけ矢印を表示する。 */
+            @container scroll-state(scrollable: bottom) {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="table-scroll native-scrollbars">
+      <table>
+        <colgroup>
+          <col class="phase" />
+          <col class="task" />
+          <col span="7" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th class="phase" scope="col">Phase</th>
+            <th class="task" scope="col">Task</th>
+            <th scope="col">April</th>
+            <th scope="col">May</th>
+            <th scope="col">June</th>
+            <th scope="col">July</th>
+            <th scope="col">August</th>
+            <th scope="col">September</th>
+            <th scope="col">October</th>
+          </tr>
+        </thead>
+      </table>
+      <div class="column-snaps" inert>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="scroll-overlays" inert>
+        <span class="scroll-hint right"></span>
+        <span class="scroll-hint bottom"></span>
+      </div>
+    </main>
+    <script>
+      // ICS MEDIA の工程表を再利用（Copyright (c) 2026 ICS INC., MIT）。
+      // https://ics.media/entry/261104/
+      // タスク名、開始月、終了月。1か月の予定は終了月を省略。
+      const schedule = {
+        Plan: [
+          ["Concept", 4],
+          ["Goals", 4, 5],
+        ],
+        Scope: [
+          ["Audit", 4],
+          ["Interviews", 4, 5],
+          ["Requirements", 5, 6],
+          ["Scope review", 6],
+        ],
+        Design: [
+          ["Structure", 5],
+          ["Screens", 5, 6],
+          ["UI", 6, 7],
+          ["API spec", 6, 7],
+        ],
+        Build: [
+          ["Setup", 6],
+          ["Frontend", 7, 8],
+          ["API", 7, 9],
+          ["Migration", 8, 9],
+          ["Code review", 9],
+        ],
+        Test: [
+          ["Unit tests", 9],
+          ["Integration", 9, 10],
+          ["Acceptance", 10],
+          ["Fixes", 10],
+        ],
+        Release: [
+          ["Release plan", 9, 10],
+          ["Launch", 10],
+          ["Retro", 10],
+        ],
+      };
+
+      function heading(text, scope, className) {
+        const cell = document.createElement("th");
+        cell.textContent = text;
+        cell.scope = scope;
+        cell.className = className;
+        return cell;
+      }
+
+      const table = document.querySelector("table");
+
+      // 各セルで使うバーのひな形。
+      const bar = document.createElement("span");
+      bar.className = "bar";
+
+      // 工程ごとに <tbody> を作る。
+      for (const [phase, tasks] of Object.entries(schedule)) {
+        const group = table.createTBody();
+        const phaseHeading = heading(phase, "rowgroup", "phase");
+        // 工程名のセルは、その工程の全タスク行にまたがる。
+        phaseHeading.rowSpan = tasks.length;
+
+        for (const [task, start, end = start] of tasks) {
+          const row = group.insertRow();
+          if (row.sectionRowIndex === 0) row.append(phaseHeading);
+          row.append(heading(task, "row", "task"));
+
+          // 4月から順にセルを作り、開始月にバーを入れる。
+          for (let month = 4; month <= 10; month++) {
+            const cell = row.insertCell();
+            if (month !== start) continue;
+
+            // 複数月の予定はセルを結合し、終了月の翌月へ進む。
+            if (end > start) cell.colSpan = end - start + 1;
+            cell.append(bar.cloneNode());
+            month = end;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

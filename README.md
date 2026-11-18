@@ -2,6 +2,8 @@ ICS MEDIAの記事『[スクロールの状態変化でスタイル切替が可�
 
 [サンプル一覧](./index.html)
 
+[縦横にスクロールする表](./scrollable-table/index.html)のタスク名と日程は、[ICS MEDIAの記事「単一軸スクロールコンテナー」の工程表](https://ics.media/entry/261104/)をもとにしています。
+
 デモで使用している画像はいずれも[Unsplash](https://unsplash.com/)で取得しています。
 
 ## 開発

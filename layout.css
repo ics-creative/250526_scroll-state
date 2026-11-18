@@ -17,6 +17,9 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+:where(:not(.native-scrollbars)) {
   scrollbar-color: var(--color-scrollbar-thumb) var(--color-bg);
 
   /* 指定幅と角丸を参照デモに合わせる。標準の色指定による上書きを避ける。 */
